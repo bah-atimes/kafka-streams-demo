@@ -11,7 +11,7 @@ import java.util.*;
 
 public class App
 {
-    private List<String> inputTopic = Arrays.asList("sync-claim-topic", "sync-person-topic");
+    private List<String> inputTopic = Arrays.asList("sync-claim-topic");
     private String bootstrapServers = "broker:9092";
 
     public static void main( String[] args )
@@ -37,7 +37,7 @@ public class App
 
         lines.foreach((key, value) -> System.out.println("Value:" + value));
 
-        KafkaStreams streams = new KafkaStreams(builder.build(), new StreamsConfig(streamsConfiguration));
+        KafkaStreams streams = new KafkaStreams(builder.build(), streamsConfiguration);
         streams.start();
 
         Runtime.getRuntime().addShutdownHook(new Thread(streams::close));
